@@ -43,8 +43,6 @@ struct SettingsView: View {
                         Text("• 2本指ドラッグ: 画面移動 (Pan)")
                         Text("• ピンチ: 拡大/縮小")
                         Text("• 青ボタン(Scope): カーソルを画面中央へ")
-                        Text("• 再生ボタン: ビルド & 実行 (Cmd+R)")
-                        Text("• 停止ボタン: 実行停止 (Cmd+.)")
                     }
                     .font(.footnote)
                     .foregroundColor(.secondary)

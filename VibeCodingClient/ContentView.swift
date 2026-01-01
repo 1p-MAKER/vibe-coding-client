@@ -51,15 +51,6 @@ struct ContentView: View {
                         // 2. Prompt Input (Compact)
                         InputAreaView()
                             .frame(maxHeight: .infinity)
-                        
-                        if keyboardHeight == 0 {
-                            Divider()
-                                .background(Color.gray)
-                            
-                            // 3. Command Grid (Compact)
-                            CommandGridView()
-                                .frame(height: geometry.size.height * 0.4)
-                        }
                     }
                     .frame(width: 70) // Fixed Compact Width
                     .background(Color.black) // Ensure background matches
@@ -70,10 +61,8 @@ struct ContentView: View {
                 // Portrait Layout: Vertical Stack (Keep Toolbar)
                 VStack(spacing: 0) {
                     // Top Area: Stream
-                    // Adjust height: If keyboard is up, give it remaining space after Input
-                    let inputHeight = geometry.size.height * 0.20
-                    let commandHeight = keyboardHeight > 0 ? 0 : geometry.size.height * 0.20 // Hide commands when typing
-                    let streamHeight = geometry.size.height - inputHeight - commandHeight
+                    let inputHeight = geometry.size.height * 0.25 // Slightly larger input area
+                    let streamHeight = geometry.size.height - inputHeight
                     
                     StreamView()
                         .frame(height: max(0, streamHeight))
@@ -81,18 +70,9 @@ struct ContentView: View {
                     
                     Divider()
                     
-                    // Middle Area: Prompt Input
+                    // Bottom Area: Prompt Input
                     InputAreaView()
                         .frame(height: inputHeight)
-                    
-                    if keyboardHeight == 0 {
-                        Divider()
-                        
-                        // Bottom Area: Command Grid
-                        CommandGridView()
-                            .frame(height: commandHeight)
-                            .transition(.move(edge: .bottom))
-                    }
                 }
                 .animation(.easeOut(duration: 0.25), value: keyboardHeight)
                 .toolbar {
